@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Battleship — Play vs AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Battleship</h1>
+    <p class="tagline">Sink the computer's fleet before it sinks yours.</p>
+  </header>
+
+  <main class="app-main">
+    <!-- SETUP PHASE -->
+    <section id="setup" class="phase">
+      <h2>1. Place your fleet</h2>
+      <p class="hint">
+        Click a cell on your board to place the highlighted ship. Use
+        <kbd>Rotate</kbd> (or press <kbd>R</kbd>) to switch orientation.
+      </p>
+
+      <div class="setup-layout">
+        <div class="board-wrap">
+          <div id="setup-board" class="board" aria-label="Your board (placement)"></div>
+        </div>
+
+        <aside class="setup-panel">
+          <h3>Fleet</h3>
+          <ul id="ship-list" class="ship-list"></ul>
+
+          <div class="setup-controls">
+            <button id="rotate-btn" class="btn">Rotate (R)</button>
+            <button id="random-btn" class="btn">Random placement</button>
+            <button id="reset-btn" class="btn btn-ghost">Reset</button>
+          </div>
+
+          <button id="start-btn" class="btn btn-primary" disabled>Start game</button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- BATTLE PHASE -->
+    <section id="battle" class="phase hidden">
+      <div class="status-bar">
+        <p id="status" class="status" role="status" aria-live="polite">Your turn — fire at the enemy!</p>
+        <button id="restart-btn" class="btn btn-ghost">New game</button>
+      </div>
+
+      <div class="battle-layout">
+        <div class="board-col">
+          <h3>Enemy waters</h3>
+          <div id="enemy-board" class="board board-enemy" aria-label="Enemy board"></div>
+          <p class="board-caption">Click to fire</p>
+        </div>
+
+        <div class="board-col">
+          <h3>Your fleet</h3>
+          <div id="player-board" class="board" aria-label="Your board"></div>
+          <p class="board-caption">Incoming fire shown here</p>
+        </div>
+      </div>
+
+      <div class="fleet-status">
+        <div>
+          <h4>Enemy ships remaining</h4>
+          <ul id="enemy-fleet-status" class="fleet-pills"></ul>
+        </div>
+        <div>
+          <h4>Your ships remaining</h4>
+          <ul id="player-fleet-status" class="fleet-pills"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- GAME OVER MODAL -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2 id="modal-title">Victory!</h2>
+      <p id="modal-text"></p>
+      <button id="modal-btn" class="btn btn-primary">Play again</button>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>Built with vanilla HTML, CSS & JavaScript.</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
